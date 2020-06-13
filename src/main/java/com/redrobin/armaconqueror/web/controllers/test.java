@@ -1,6 +1,5 @@
-package com.redrobin.armaconqueror.controllers;
+package com.redrobin.armaconqueror.web.controllers;
 
-import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 @Named
