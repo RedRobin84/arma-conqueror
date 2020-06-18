@@ -17,12 +17,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.
                 authorizeRequests().
-                antMatchers("/api/**", "/account/register.xhtml", "/javax.faces.resource/**").permitAll()
+                antMatchers("/api/**", "/register.xhtml", "/javax.faces.resource/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login.xhtml").failureUrl("/login.xhtml?error=true")
+                .loginPage("/login.xhtml").failureUrl("/login.xhtml?error=true").successForwardUrl("/helloworld.xhtml")
                 .permitAll()
                 .and().logout().logoutSuccessUrl("/login.xhtml")
                 .and()
@@ -32,10 +32,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth, UserDetailsService userDetailsService, PasswordEncoder encoder)
             throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(encoder);
 
+        auth.userDetailsService(userDetailsService).passwordEncoder(encoder);
         auth.inMemoryAuthentication().withUser("john.doe")
-                .password("{noop}1234").roles("USER").and()
-                .withUser("jane.doe").password("{noop}5678").roles("ADMIN");
+                .password(encoder.encode("1234")).roles("USER").and()
+                .withUser("jane.doe").password(encoder.encode("5678")).roles("ADMIN");
     }
 }

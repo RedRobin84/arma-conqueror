@@ -9,25 +9,33 @@
 </h:head>
 
 <h:body>
+
     <h:form id="register">
+
+        <p:messages id="messages" showDetail="true">
+            <p:autoUpdate />
+        </p:messages>
 
         <p:panel header="PrimeFaces Hello World Example">
             <h:panelGrid columns="2" cellpadding="4">
                 <h:outputText value="First Name: " />
-                <p:inputText id="first-name" value="#{test.user.firstName}" />
+                <p:inputText id="first-name" value="#{registerView.user.firstName}" />
 
                 <h:outputText value="Last Name: " />
-                <p:inputText id="last-name" value="#{test.user.lastName}" />
+                <p:inputText id="last-name" value="#{registerView.user.lastName}" />
+
+                <h:outputText value="Username: " />
+                <p:inputText id="username" value="#{registerView.user.username}" />
 
                 <h:outputText value="Email: " />
-                <p:inputText id="email" value="#{test.user.email}" />
+                <p:inputText id="email" value="#{registerView.user.email}" />
 
                 <h:outputText value="Password: " />
-                <p:inputText id="password" value="#{test.user.password}" />
+                <p:inputText id="password" value="#{registerView.user.password}" />
 
                 <h:outputText value="Repeat password " />
-                <p:inputText id="rpassword" value="#{test.user.repeatPassword}" />
-                   <p:commandButton value="Submit" action="#{test.showGreeting()}" ajax="false"/>
+                <p:inputText id="rpassword" value="#{registerView.user.repeatPassword}" />
+                   <p:commandButton value="Register" action="#{registerView.registerUser()}" ajax="false"/>
             </h:panelGrid>
         </p:panel>
 

@@ -3,6 +3,7 @@ package com.redrobin.armaconqueror.security.services;
 import java.util.ArrayList;
 
 import com.redrobin.armaconqueror.security.exceptions.EmailExistsException;
+import com.redrobin.armaconqueror.security.exceptions.UsernameExistsException;
 import com.redrobin.armaconqueror.security.models.AuthenticatedUser;
 import com.redrobin.armaconqueror.security.models.ConquerorUser;
 import com.redrobin.armaconqueror.security.repository.UserRepository;
@@ -30,11 +31,14 @@ public class ConquerorUserServiceImpl implements ConquerorUserService {
     }
 
     @Override
-    public AuthenticatedUser registerNewUserAccount(ConquerorUser serviceUser) throws EmailExistsException {
+    public AuthenticatedUser registerNewUserAccount(ConquerorUser serviceUser) throws EmailExistsException, UsernameExistsException {
 
         // todo: return false
         if (emailExist(serviceUser.getEmail())) {
             throw new EmailExistsException("There is an account with that email adress:" + serviceUser.getEmail());
+        }
+        if (usernameExist(serviceUser.getUsername())) {
+            throw new UsernameExistsException("There is an account with username: " + serviceUser.getUsername());
         }
 
         User user = new User();
@@ -56,6 +60,10 @@ public class ConquerorUserServiceImpl implements ConquerorUserService {
 
         return authenticatedUser;
 
+    }
+
+    private boolean usernameExist(String username) {
+        return userRepository.findByUsername(username) != null;
     }
 
     private boolean emailExist(String email) {

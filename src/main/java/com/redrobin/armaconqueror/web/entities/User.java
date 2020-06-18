@@ -13,9 +13,7 @@ import javax.persistence.Table;
 import java.util.Set;
 
 @Entity
-@Table(name = "users",
-        indexes = {@Index(name = "username_uidx", columnList = "username", unique = true),
-                @Index(name = "email_uidx", columnList = "email", unique = true)})
+@Table(name = "users")
 @Data
 public class User {
 
@@ -24,7 +22,7 @@ public class User {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
 
     @Column(name = "firstname")
@@ -33,7 +31,7 @@ public class User {
     @Column(name = "lastName")
     private String lastName;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password")

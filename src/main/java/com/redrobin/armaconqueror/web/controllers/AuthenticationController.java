@@ -1,6 +1,7 @@
 package com.redrobin.armaconqueror.web.controllers;
 
 import com.redrobin.armaconqueror.security.exceptions.EmailExistsException;
+import com.redrobin.armaconqueror.security.exceptions.UsernameExistsException;
 import com.redrobin.armaconqueror.security.models.ConquerorUser;
 import com.redrobin.armaconqueror.security.services.ConquerorUserService;
 import com.redrobin.armaconqueror.web.viewmodels.AuthenticationUser;
@@ -55,7 +56,7 @@ public class AuthenticationController {
 
         try {
             conquerorUserService.registerNewUserAccount(jacketUser);
-        } catch (EmailExistsException e) {
+        } catch (EmailExistsException | UsernameExistsException e) {
             return register(model);
         }
         return "redirect:/";
