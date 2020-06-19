@@ -46,7 +46,7 @@ public class AuthenticationController {
             model.addAttribute("registrationUser", registrationUser);
             return "authenticate/register";
         }
-        ConquerorUser jacketUser = new ConquerorUser();
+        RegistrationUser jacketUser = new RegistrationUser();
 
         jacketUser.setEmail(registrationUser.getEmail());
         jacketUser.setFirstName(registrationUser.getFirstName());

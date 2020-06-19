@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import java.util.Set;
 
 @Entity
@@ -31,6 +32,7 @@ public class User {
     @Column(name = "lastName")
     private String lastName;
 
+    @Email
     @Column(name = "email", unique = true)
     private String email;
 

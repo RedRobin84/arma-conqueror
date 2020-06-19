@@ -4,6 +4,9 @@ import com.redrobin.armaconqueror.security.exceptions.EmailExistsException;
 import com.redrobin.armaconqueror.security.exceptions.UsernameExistsException;
 import com.redrobin.armaconqueror.security.models.ConquerorUser;
 import com.redrobin.armaconqueror.security.services.ConquerorUserService;
+import com.redrobin.armaconqueror.web.viewmodels.RegistrationUser;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.joinfaces.autoconfigure.viewscope.ViewScope;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,20 +33,15 @@ public class RegisterView extends AbstractView {
         this.conquerorUserService = conquerorUserService;
     }
 
-    private ConquerorUser user;
+    @Getter
+    @Setter
+    private RegistrationUser user;
 
     @PostConstruct
     private void init() {
-        this.user = new ConquerorUser();
+        this.user = new RegistrationUser();
     }
 
-    public ConquerorUser getUser() {
-        return this.user;
-    }
-
-    public void setUser(ConquerorUser user) {
-        this.user = user;
-    }
 
     public String registerUser() {
         Authentication authentication =

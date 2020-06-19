@@ -22,7 +22,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login.xhtml").failureUrl("/login.xhtml?error=true").successForwardUrl("/helloworld.xhtml")
+                .loginPage("/login.xhtml").failureUrl("/login.xhtml?error=true").successForwardUrl("/index.xhtml")
                 .permitAll()
                 .and().logout().logoutSuccessUrl("/login.xhtml")
                 .and()

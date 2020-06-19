@@ -8,7 +8,9 @@ import com.redrobin.armaconqueror.security.models.AuthenticatedUser;
 import com.redrobin.armaconqueror.security.models.ConquerorUser;
 import com.redrobin.armaconqueror.security.repository.UserRepository;
 import com.redrobin.armaconqueror.web.entities.User;
+import com.redrobin.armaconqueror.web.viewmodels.RegistrationUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ConquerorUserServiceImpl implements ConquerorUserService {
@@ -31,7 +34,8 @@ public class ConquerorUserServiceImpl implements ConquerorUserService {
     }
 
     @Override
-    public AuthenticatedUser registerNewUserAccount(ConquerorUser serviceUser) throws EmailExistsException, UsernameExistsException {
+    @Transactional
+    public AuthenticatedUser registerNewUserAccount(RegistrationUser serviceUser) throws EmailExistsException, UsernameExistsException {
 
         // todo: return false
         if (emailExist(serviceUser.getEmail())) {
@@ -44,12 +48,17 @@ public class ConquerorUserServiceImpl implements ConquerorUserService {
         User user = new User();
         user.setFirstName(serviceUser.getFirstName());
         user.setLastName(serviceUser.getLastName());
+        user.setUsername(serviceUser.getUsername());
 
         user.setPassword(passwordEncoder.encode(serviceUser.getPassword()));
 
         user.setEmail(serviceUser.getEmail());
 
-        userRepository.save(user);
+        try {
+            userRepository.save(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         AuthenticatedUser authenticatedUser = new AuthenticatedUser(user);
         Authentication auth = new UsernamePasswordAuthenticationToken(authenticatedUser, null,

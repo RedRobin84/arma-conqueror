@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
@@ -13,29 +14,30 @@
     <h:form id="register">
 
         <p:messages id="messages" showDetail="true">
-            <p:autoUpdate />
+            <p:autoUpdate/>
         </p:messages>
 
         <p:panel header="PrimeFaces Hello World Example">
             <h:panelGrid columns="2" cellpadding="4">
-                <h:outputText value="First Name: " />
-                <p:inputText id="first-name" value="#{registerView.user.firstName}" />
+                <h:outputText value="First Name: "/>
+                <p:inputText id="first-name" value="#{registerView.user.firstName}"/>
 
-                <h:outputText value="Last Name: " />
-                <p:inputText id="last-name" value="#{registerView.user.lastName}" />
+                <h:outputText value="Last Name: "/>
+                <p:inputText id="last-name" value="#{registerView.user.lastName}"/>
 
-                <h:outputText value="Username: " />
-                <p:inputText id="username" value="#{registerView.user.username}" />
+                <h:outputText value="Username: "/>
+                <p:inputText id="username" required="true" value="#{registerView.user.username}"/>
 
-                <h:outputText value="Email: " />
-                <p:inputText id="email" value="#{registerView.user.email}" />
+                <h:outputText value="Email: "/>
+                <p:inputText id="email" required="true" type="email" value="#{registerView.user.email}"/>
 
-                <h:outputText value="Password: " />
-                <p:inputText id="password" value="#{registerView.user.password}" />
+                <h:outputText value="Password: "/>
+                <p:password id="password" type="password" match="rpassword" required="true" value="#{registerView.user.password}"/>
 
-                <h:outputText value="Repeat password " />
-                <p:inputText id="rpassword" value="#{registerView.user.repeatPassword}" />
-                   <p:commandButton value="Register" action="#{registerView.registerUser()}" ajax="false"/>
+                <h:outputText value="Repeat password "/>
+                <p:password id="rpassword" type="password" required="true" value="#{registerView.user.repeatPassword}"/>
+                <p:commandButton value="Register" action="#{registerView.registerUser()}" ajax="false"/>
+                <p:link outcome="login" value="Login"/>
             </h:panelGrid>
         </p:panel>
 
