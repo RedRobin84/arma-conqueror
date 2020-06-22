@@ -34,7 +34,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             throws Exception {
 
         auth.userDetailsService(userDetailsService).passwordEncoder(encoder);
-        auth.inMemoryAuthentication().withUser("john.doe")
+        auth.inMemoryAuthentication().withUser("john.doe") // todo: remove inMemoryUsers
                 .password(encoder.encode("1234")).roles("USER").and()
                 .withUser("jane.doe").password(encoder.encode("5678")).roles("ADMIN");
     }
