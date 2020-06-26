@@ -11,6 +11,6 @@ public class HelloWorld {
         Authentication authentication =
                 SecurityContextHolder.getContext().getAuthentication();
 
-        return "Hello " + authentication.getName() + "!";
+        return "Hello " + authentication.getName();
     }
 }

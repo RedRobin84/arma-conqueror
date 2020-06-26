@@ -24,12 +24,6 @@
         <p:panel header="PrimeFaces Hello World Example">
             <h:panelGrid columns="2" cellpadding="4">
 
-                <h:outputText value="First Name: " />
-                <p:inputText value="#{helloWorld.firstName}" />
-
-                <h:outputText value="Last Name: " />
-                <p:inputText value="#{helloWorld.lastName}" />
-
                 <p:commandButton value="Submit" update="greeting"
                                  oncomplete="PF('greetingDialog').show()" />
             </h:panelGrid>
