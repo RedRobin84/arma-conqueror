@@ -15,7 +15,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.
+       http.authorizeRequests().anyRequest().permitAll();
+
+        /* http.
                 authorizeRequests().
                 antMatchers("/api/", "/register.xhtml", "/javax.faces.resource/**").permitAll()
                 .anyRequest()
@@ -27,7 +29,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().logout().logoutSuccessUrl("/login.xhtml")
                 .and()
                 .csrf().disable()
-        .httpBasic();
+        .httpBasic();*/
     }
 
     @Autowired
