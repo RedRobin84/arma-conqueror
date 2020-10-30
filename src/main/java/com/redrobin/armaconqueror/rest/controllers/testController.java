@@ -12,6 +12,7 @@ public class testController {
 
     @GetMapping("/greeting")
     public Test test(@RequestParam(value = "name", defaultValue = "World") String name) {
+        String test = name;
         return new Test(String.format(template, name));
     }
 }

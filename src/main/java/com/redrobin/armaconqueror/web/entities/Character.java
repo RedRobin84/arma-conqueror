@@ -25,6 +25,6 @@ public class Character {
     @Column(name = "hardcore")
     private boolean isHardcore;
 
-    @OneToOne(orphanRemoval = true)
-    private Equipment equipment;
+    @Column(name = "loadout")
+    private String loadout;
 }
